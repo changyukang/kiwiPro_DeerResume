@@ -1,25 +1,37 @@
-  <header class="site-head">
-    <div class="vertical">
-      <h1 id="drtitle">{{resume.title}}</h1>
-      <p class="subtitle" id="drsubtitle">{{resume.subtitle}}</p>
-    </div> 
-  </header>  
-  <div class="content yue" id="cvcontent" ng-bind-html="resume.content | wizMarkdownFltr" ng-show="resume.show==1">
-  </div>  
-  <div class="content passbox" ng-show="resume.show==0">
-    <center>
-    <p>本简历受密码保护，请输入阅读密码后继续</p>
-    <div class="input-group passinput">
-      <input type="password" class="form-control" name="vpass" ng-model="vpass">
-      <span class="input-group-btn">
-        <button class="btn btn-default " type="button" ng-click="password(vpass)">确定</button>
-      </span>
-    </div><!-- /input-group -->
-  </center>
-  </div>  
+<!DOCTYPE html>
+<html ng-app="deerResume">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeerResume</title>
+  <link href="image/browser.png" rel="shortcut icon">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/yue.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="bower/components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower/components/ng-notify/dist/ng-notify.min.css">
+  <script src="bower/components/jquery/dist/jquery.min.js"></script>
+  <script src="bower/components/angular/angular.min.js"></script>
+  <script src="bower/components/angular-route/angular-route.min.js"></script>
+  <script src="bower/components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="bower/components/showdown/compressed/showdown.js"></script>
+  <script src="bower/components/ng-notify/dist/ng-notify.min.js"></script>
+  <script src="js/wizMarkdown.min.js"></script>
+  <script src="js/jspdf.min.js"></script>
+  <script src="js/jspdf.plugin.addhtml.js"></script>
+  <script src="bower/components/angular-cookies/angular-cookies.min.js"></script>
+  <script src="bower/components/angularLocalStorage/src/angularLocalStorage.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <base target="_blank">
+  <div ng-view id="resume_body"></div>
+  <form action="http://pdf.ftqq.com" method="post" target="_blank" id="hform">
+    <input type="hidden" name="title"/>
+    <input type="hidden" name="subtitle"/>
+    <input type="hidden" name="content"/>
+    <input type="hidden" name="pdfkey"/>
+  </form>  
+</body>
 
-  <div class="action-bar hidden-xs">
-  <a href="https://github.com/geekcompany/DeerResume"><img src="image/home.png" /></a>  
-  &nbsp;&nbsp;&nbsp;<a href="#" onclick="makepdf()" title="PDF格式"><img src="image/book.png" /></a>
-  <span ng-show="resume.local!=1">&nbsp;&nbsp;&nbsp;<a ng-href="#/admin"><img src="image/cog.png" /></a></span>
-  </div> 
+</html>
